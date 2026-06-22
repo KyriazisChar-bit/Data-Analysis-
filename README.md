@@ -103,9 +103,9 @@ Then enter any assignment folder, place its dataset alongside the script, and ru
 
 ## 👥 Author
 
-| Name | Student ID |
-|------|------------|
-| Kyriazis Charitopoulos | 7137 |
+| Name | 
+|------|
+| Kyriazis Charitopoulos |
 
 ---
 
