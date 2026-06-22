@@ -1,6 +1,6 @@
-# 🍷 Wine Data Analysis — Course Portfolio
+# 📊 Data Analysis — Course Portfolio
 
-A four-part data-analysis pipeline on a wine-production dataset, taking it from raw, messy CSV all the way to tuned machine-learning classifiers. Each assignment builds on the one before it.
+A five-assignment journey through the full data-science workflow: from cleaning a raw, broken CSV all the way to training convolutional neural networks. Built over one semester, each assignment added a new layer of theory and tooling on top of the last.
 
 **Institution:** Aristotle University of Thessaloniki (School of Mechanical Engineering, AUTh)
 **Course:** Data Analysis — 8th Semester
@@ -12,35 +12,64 @@ A four-part data-analysis pipeline on a wine-production dataset, taking it from 
 
 ## ⚙️ Tech Stack
 
-- Python 3
-- pandas, NumPy
-- Matplotlib, seaborn
-- scikit-learn
-- statsmodels
+- **Language:** Python 3
+- **Data handling:** pandas, NumPy
+- **Statistics:** statsmodels
+- **Machine learning:** scikit-learn
+- **Deep learning:** TensorFlow / Keras
+- **Visualisation:** Matplotlib, seaborn
 
 ---
 
-## 🍇 The Dataset
+## 🎯 What This Portfolio Covers
 
-Physicochemical measurements of red and white wines — `fixed acidity`, `volatile acidity`, `citric acid`, `residual sugar`, `chlorides`, `free sulfur dioxide`, `total sulfur dioxide`, `density`, `pH`, `sulphates`, `alcohol` — plus a `quality` score and a `wine_type` label (red / white).
-
-The student ID (**AEM = 7137**) is used as the random seed throughout, so every split and sample is fully reproducible.
+Two datasets, one continuous thread. Assignments 1–4 take a **wine physicochemical dataset** from raw file to tuned classifiers; Assignment 5 is a standalone **MNIST** deep-learning study. Together they walk through every stage a real analysis touches: cleaning, exploring, modelling, evaluating, and tuning.
 
 ---
 
-## 🏗️ The Pipeline
+## 🧠 What I Learned
 
-**Assignment 1 — Data Cleaning & Exploratory Analysis**
-Turns the raw file into a clean, analysis-ready dataset: deduplication, invalid-value detection, type coercion, missing-value imputation (per wine type), outlier detection (IQR & Z-score), clamp transformation, and a full set of boxplots, histograms, and a correlation matrix.
+**Data Cleaning & Preprocessing**
+Real data is messy. I learned to detect and remove duplicates, spot invalid sentinel values (`-999`, `?`, `9999`), coerce inconsistent types, and reason about *when* to drop a row versus impute it. I imputed missing values by group (per wine type) rather than globally, and used domain knowledge (pH can't exceed 14, alcohol can't exceed 100%) to catch errors a purely statistical check would miss.
 
-**Assignment 2 — Regression (predicting `quality`)**
-Simple linear regression per predictor, full multiple linear regression, forward stepwise selection, and polynomial (non-linear) models — judged on p-values, R², and Adjusted R².
+**Exploratory Data Analysis**
+How to *look* at data before modelling it — descriptive statistics, histograms, boxplots, and correlation heatmaps — and how to read them: spotting skew, multimodality, outliers, and relationships between variables.
 
-**Assignment 3 — Classification (predicting `wine_type`)**
-Discriminative classifiers (Logistic Regression, LDA, QDA, Naïve Bayes, KNN) evaluated with confusion matrices, accuracy/precision/recall/F1, and ROC/AUC curves. K for KNN chosen by 5-fold cross-validation.
+**Outlier Detection**
+Two complementary methods — the **IQR rule** and **Z-scores** (3.5σ) — and how to act on what they find through clamp/clip transformation rather than blind deletion. I also saw how combining classes inflates outlier counts versus analysing groups separately.
 
-**Assignment 4 — Ensemble Tree Methods (predicting `wine_type`)**
-Decision Tree, Bagging, Random Forest, and Gradient Boosting — studying the effect of tree depth and number of estimators, then tuning each model with Grid Search + 5-fold cross-validation.
+**Statistical Regression & Inference**
+The mechanics *and* the interpretation of regression: reading coefficients, standard errors, t-statistics, and **p-values**; testing the null hypothesis H₀: βⱼ = 0; and judging fit with R² and Adjusted R². I learned the difference between simple and multiple regression, the danger of **multicollinearity**, and how **forward stepwise selection** trades model size for predictive gain.
+
+**The Bias–Variance Tradeoff**
+Made concrete by watching a decision tree's test error fall then rise as depth increased — underfitting on one side, overfitting on the other — and by seeing why **ensembles** (Bagging, Random Forests) reduce variance by averaging many decorrelated trees.
+
+**Classification & Discriminative Methods**
+A whole toolkit — Logistic Regression, LDA, QDA, Naïve Bayes, and KNN — plus the assumptions behind each (e.g. why QDA allows curved boundaries, why KNN needs feature scaling).
+
+**Model Evaluation Done Properly**
+Beyond accuracy: confusion matrices, precision, recall, F1, and **ROC curves / AUC** — and crucially, *why* a single number lies. I learned that a model predicting "always white" can look accurate while being useless, and how recall, precision, and AUC tell the fuller story. I also used **k-fold cross-validation** to choose hyperparameters (like K in KNN) honestly.
+
+**Ensemble Learning & Hyperparameter Tuning**
+Decision Trees, Bagging, Random Forests, and Gradient Boosting — how they differ, why Random Forest's feature subsampling (`max_features`) decorrelates trees, and how **Grid Search + cross-validation** systematically squeezes out the best configuration. I saw firsthand that strong ensembles are nearly optimal "out of the box," leaving little room for tuning to improve.
+
+**Deep Learning**
+Building neural networks from scratch in Keras — dense layers, activations (ReLU, Softmax), optimisers (Adam), and loss functions — then learning *why* a **CNN** beats a fully-connected net on images: weight sharing and translation invariance deliver higher accuracy with **fewer** parameters.
+
+**Reproducibility & Workflow**
+Seeding every random operation (with my student ID) so results are repeatable, separating train/test data correctly, and documenting methodology alongside code and results.
+
+---
+
+## 🗺️ The Journey
+
+| # | Assignment | Theme | Key Takeaway |
+|---|------------|-------|--------------|
+| 1 | Cleaning & EDA | Data preparation | Most of the work is making data trustworthy |
+| 2 | Regression | Statistical modelling | Significance, fit, and parsimony |
+| 3 | Classification | Discriminative methods | Evaluate with the right metric, not just accuracy |
+| 4 | Ensemble Trees | Bias–variance & tuning | Random Forests are robust and hard to beat |
+| 5 | Neural Networks | Deep learning | Architecture matters — CNNs are built for images |
 
 ---
 
@@ -48,12 +77,13 @@ Decision Tree, Bagging, Random Forest, and Gradient Boosting — studying the ef
 
 | Folder | Contents |
 |--------|----------|
-| `assignment-1/` | Cleaning & EDA — script, report |
-| `assignment-2/` | Regression — script, report |
-| `assignment-3/` | Discriminative classification (Parts A & B) — scripts, report |
-| `assignment-4/` | Ensemble tree methods — script, report |
+| `assignment-1/` | Wine cleaning & exploratory analysis |
+| `assignment-2/` | Regression (predicting quality) |
+| `assignment-3/` | Classification (predicting wine type) |
+| `assignment-4/` | Ensemble tree methods |
+| `assignment-5/` | MNIST neural networks (Simple NN vs CNN) |
 
-Each folder contains the Python script(s), the report (`.docx`, `.tex`, and `.pdf`), and its own `README.md`.
+Each folder contains its Python script(s), the report (`.docx`, `.tex`, `.pdf`), and a dedicated `README.md`.
 
 ---
 
@@ -62,28 +92,12 @@ Each folder contains the Python script(s), the report (`.docx`, `.tex`, and `.pd
 **Requirements:** Python 3.8+, pip
 
 ```bash
-git clone https://github.com/<your-username>/wine-data-analysis.git
-cd wine-data-analysis
-pip install pandas numpy matplotlib seaborn scikit-learn statsmodels
+git clone https://github.com/<your-username>/data-analysis-portfolio.git
+cd data-analysis-portfolio
+pip install pandas numpy statsmodels scikit-learn tensorflow matplotlib seaborn
 ```
 
-Place the dataset CSV in the assignment folder and run the script, e.g.:
-
-```bash
-cd assignment-1
-python Data1_EN.py
-```
-
----
-
-## 📊 Headline Results
-
-| Assignment | Task | Best Outcome |
-|------------|------|--------------|
-| 1 | Cleaning | 6,708 → 5,043 clean rows; outliers handled via IQR + Z-score |
-| 2 | Regression | Multiple model R² = 0.287; `alcohol` strongest predictor |
-| 3 | Classification | KNN best — Accuracy 0.973, AUC 0.973 |
-| 4 | Ensembles | Random Forest best — tuned Accuracy 0.9673 |
+Then enter any assignment folder, place its dataset alongside the script, and run it.
 
 ---
 
