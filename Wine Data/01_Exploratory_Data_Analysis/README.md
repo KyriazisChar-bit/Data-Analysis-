@@ -1,39 +1,77 @@
-# Project 1: Data Cleaning & Exploratory Data Analysis (EDA)
+# 🧹 Assignment 1 — Wine Data Cleaning & Exploratory Analysis
 
-##  Objective
-The goal of this project is to take a raw, messy dataset containing chemical properties of red and white wines and transform it into a clean, statistically sound format ready for machine learning applications. The script systematically handles invalid entries, imputes missing data based on categorical grouping, and manages outliers using standard statistical thresholds[cite: 4].
+The foundation of the wine-analysis portfolio: transforming a raw, error-ridden CSV into a clean, reproducible dataset ready for modelling, and exploring its structure visually.
 
-##  Dataset Overview
-* **Source:** `Data_Analysis_2026.csv`[cite: 4].
-* **Sampling:** 80% of the raw data was randomly sampled using a custom seed for reproducibility[cite: 4].
-* **Features:** Includes continuous chemical properties (e.g., pH, alcohol, residual sugar) and categorical variables (wine type)[cite: 4].
+**Institution:** Aristotle University of Thessaloniki (School of Mechanical Engineering, AUTh)
+**Course:** Data Analysis — 8th Semester
+**Instructor:** Sofia Panagiotidou, Associate Professor
+**Author:** Kyriazis Charitopoulos · AEM 7137
 
-##  Methodology & Technical Approach
+---
 
-### 1. Data Validation & Cleaning
-Real-world data is rarely perfect. The initial phase focused on identifying and neutralizing "garbage" data:
-* **Deduplication:** Identified and removed duplicate rows to prevent skewed analysis[cite: 4].
-* **String Standardization:** Applied fuzzy string matching (`get_close_matches`) to standardize inconsistent text entries in the `wine_type` column (e.g., correcting misspellings to strictly "red" or "white")[cite: 4].
-* **Logical Bounds Checking:** Filtered out physically impossible or invalid numeric entries, such as negative pH values, pH > 10, alcohol percentages > 100, and quality scores outside the 0-10 range[cite: 4]. 
-* **Garbage Value Removal:** Scanned for and nullified placeholder strings used for missing data (e.g., `?`, `-999`, `9999 N/A`)[cite: 4].
+## ⚙️ Tech Stack
 
-### 2. Missing Value Imputation
-* Dropped highly corrupted rows missing data in more than 3 columns[cite: 4].
-* Instead of using a global mean to fill remaining missing numerical values, the script intelligently imputes `NaN` values using the specific mean of the corresponding `wine_type` group (red or white), preserving the distinct chemical profiles of each wine variant[cite: 4].
+- Python 3
+- pandas, NumPy
+- Matplotlib
 
-### 3. Outlier Detection & Transformation
-Because wine chemistry varies significantly by type, outlier detection was performed *separately* for red and white wines:
-* **Detection:** Evaluated outliers using both the Interquartile Range (IQR) method and the Z-score method (flagging data points > 3.5 standard deviations from the mean)[cite: 4].
-* **Treatment (Clamp Transformation):** Applied a clipping function to cap extreme outliers at the lower (`Q1 - 1.5 * IQR`) and upper (`Q3 + 1.5 * IQR`) bounds, retaining the data points while minimizing their distortion on future models[cite: 4].
+---
 
-### 4. Statistical Profiling
-Generated comprehensive summary statistics for the finalized dataset:
-* **Continuous Variables:** Count, mean, median, min, max, standard deviation, missing values, and cardinality[cite: 4].
-* **Categorical Variables:** Count, most frequent value (mode), min, max, missing values, and cardinality[cite: 4].
+## 🏗️ What It Does
 
-##  How to Run
+**Data definition**
+Loads the wine dataset and splits it into training (80%) and test (20%) sets using `sample()` with the student ID (**AEM = 7137**) as the seed, guaranteeing reproducibility.
 
-1. Ensure you have the `Data_Analysis_2026.csv` file in the same directory as the script.
-2. Install required dependencies:
+**Duplicate removal**
+Detects and drops duplicate rows (6,708 → 5,593).
+
+**Invalid-value detection**
+Scans every column's unique values, normalises typo'd `wine_type` entries (via fuzzy matching), and flags garbage tokens (`-999`, `999`, `9999`, `?`, `NaN`).
+
+**Type coercion & missing values**
+Forces numeric columns to floats (non-numerics → `NaN`), counts missing values per column, drops empty/unnamed columns, and keeps rows with at most 3 missing values.
+
+**Imputation**
+Fills remaining gaps with the column mean for the corresponding wine type (red / white computed separately).
+
+**Outlier detection & transformation**
+Identifies outliers with both the IQR method and the Z-score method (3.5σ threshold), then applies a clamp (clip) transformation.
+
+**Exploratory analysis**
+Descriptive statistics for continuous and categorical variables, histograms, boxplots (combined and per wine type), and a correlation heatmap.
+
+---
+
+## 📁 Key Files
+
+| File | Description |
+|------|-------------|
+| `Data1_EN.py` | Full cleaning + EDA pipeline |
+| `report.pdf` / `.docx` / `.tex` | Methodology, code excerpts, results, and commentary |
+| `Data_Analysis_2026.csv` | Raw input dataset (place alongside the script) |
+
+---
+
+## 🚀 Running
+
 ```bash
-   pip install pandas numpy matplotlib
+pip install pandas numpy matplotlib
+python Data1_EN.py
+```
+
+---
+
+## 📊 Key Results
+
+| Stage | Rows |
+|-------|------|
+| Raw sample | 6,708 |
+| After deduplication | 5,593 |
+| After full cleaning | 5,043 |
+
+Final split by type: **3,931 white**, **1,380 red**. The `pH`, `alcohol`, and `quality` columns revealed clearly invalid entries (e.g. pH > 14, alcohol > 100%), addressed during cleaning.
+
+---
+
+*Academic coursework — Aristotle University of Thessaloniki. Not for resubmission in other academic contexts.*
+
