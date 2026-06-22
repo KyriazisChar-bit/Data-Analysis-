@@ -83,7 +83,7 @@ Seeding every random operation (with my student ID) so results are repeatable, s
 | `assignment-4/` | Ensemble tree methods |
 | `assignment-5/` | MNIST neural networks (Simple NN vs CNN) |
 
-Each folder contains its Python script(s), the report (`.docx`, `.tex`, `.pdf`), and a dedicated `README.md`.
+Each folder contains its Python script, the report (`.pdf`), and a dedicated `README.md`.
 
 ---
 
