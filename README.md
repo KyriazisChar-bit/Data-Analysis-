@@ -103,9 +103,11 @@ Then enter any assignment folder, place its dataset alongside the script, and ru
 
 ## 👥 Author
 
-| Name | 
-|------|
-| Kyriazis Charitopoulos |
+| Field | Detail |
+|-------|--------|
+| Name | Charitopoulos Kyriazis |
+| University | Aristotle University of Thessaloniki |
+| Department | Mechanical Engineering |
 
 ---
 
