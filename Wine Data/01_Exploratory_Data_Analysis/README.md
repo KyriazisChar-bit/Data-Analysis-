@@ -4,7 +4,6 @@ The foundation of the wine-analysis portfolio: transforming a raw, error-ridden 
 
 **Institution:** Aristotle University of Thessaloniki (School of Mechanical Engineering, AUTh)
 **Course:** Data Analysis — 8th Semester
-**Instructor:** Sofia Panagiotidou, Associate Professor
 **Author:** Kyriazis Charitopoulos · AEM 7137
 
 ---
