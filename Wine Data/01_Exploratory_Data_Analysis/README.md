@@ -4,7 +4,7 @@ The foundation of the wine-analysis portfolio: transforming a raw, error-ridden 
 
 **Institution:** Aristotle University of Thessaloniki (School of Mechanical Engineering, AUTh)
 **Course:** Data Analysis — 8th Semester
-**Author:** Kyriazis Charitopoulos · AEM 7137
+**Author:** Kyriazis Charitopoulos 
 
 ---
 
