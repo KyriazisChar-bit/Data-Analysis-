@@ -4,8 +4,7 @@ A four-part data-analysis pipeline on a wine-production dataset, taking it from 
 
 **Institution:** Aristotle University of Thessaloniki (School of Mechanical Engineering, AUTh)
 **Course:** Data Analysis — 8th Semester
-**Instructor:** Sofia Panagiotidou, Associate Professor
-**Author:** Kyriazis Charitopoulos · AEM 7137
+**Author:** Kyriazis Charitopoulos 
 **Academic Year:** 2025–2026
 
 ---
